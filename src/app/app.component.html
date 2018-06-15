@@ -1,0 +1,36 @@
+<label>TRACE</label>
+<hr>
+<div class="row">
+  <div id="ExportDiv" *ngIf="rowData" class="col-sm-2">
+    <app-export-to-excel [gridApi]="gridApi"></app-export-to-excel>
+  </div>
+  <div class="col-sm-2" *ngIf="data">
+    <app-group-row-edit [columnDefs]="colDefs" [rowData]="data"></app-group-row-edit>
+  </div>
+  <div class="col-sm-8"></div>
+</div>
+<div>
+  <ag-grid-angular style="width: 100%; height: 500px;"
+                   class="ag-theme-balham"
+                   [enableSorting]="true"
+                   [enableFilter]="true"
+                   [columnDefs]="colDefs"
+                   [rowData]="rowData"
+                   [floatingFilter]="true"
+                   [enableRangeSelection]="true"
+                   [rowMultiSelectWithClick]="true"
+                   [rowSelection]="rowSelection"
+                   [suppressDragLeaveHidesColumns]="true"
+                   [suppressMakeColumnVisibleAfterUnGroup]="true"
+                   [rowGroupPanelShow]="rowGroupPanelShow"
+                   (selectionChanged)="onSelectionChanged($event)"
+                   (cellClicked)="OnCellClicked($event)"
+                   (cellEditingStopped)="OnCellEditingStopped($event)"
+                   (rangeSelectionChanged)="OnRangeSelection($event)"
+                   (gridReady)="onGridReady($event)"
+  ></ag-grid-angular>
+</div>
+
+<!--[config]="config"  (onSaveChange)="updateRow($event)" -->
+
+<!--(cellMouseOver)="OnMouseOver($event)"-->

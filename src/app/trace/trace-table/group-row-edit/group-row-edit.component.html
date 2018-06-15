@@ -1,0 +1,23 @@
+<button type="button" (click)="showModal(modal)">Open Modal</button>
+<app-demo-modal #modal>
+  <div class="app-modal-header">
+    Group Edit Rows
+  </div>
+  <div class="app-modal-body" *ngIf="isFormAvailable">
+    The following fields will be updated across all selected rows...
+    <form [formGroup] = "rowEditForm">
+      <div *ngFor="let col of fields">
+        <div class="form-group" *ngIf="col.editable == true">
+          <label for="exampleInputEmail1">{{col.headerName}}</label>
+          <input type="text" class="form-control"  formControlName="{{col.field}}" id="exampleInputEmail1"
+                 >
+        </div>
+      </div>
+    </form>
+  </div>
+  <div class="app-modal-footer">
+    <button type="button" class="btn btn-default" (click)="modal.hide()">Close</button>
+    <button type="button" class="btn btn-primary" (click)="onSubmit(rowEditForm)">Save changes</button>
+  </div>
+</app-demo-modal>
+
